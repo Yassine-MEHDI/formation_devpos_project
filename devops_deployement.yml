@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+  labels:
+    tier: frontend
+    app: customer-service-deployment
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      name: customer-service
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: customer-service
+          image: fhcebihi/tp5_spring_boot_ws
+  replicas: 2
